@@ -1,5 +1,6 @@
-.env
 playground.js
 node_modules/
 .vscode/
 bk*
+.env
+.gitignore
