@@ -39,7 +39,7 @@ function Req_offers_category(err, res, body) {
         const $ = cheerio.load(body);
         pages_num = $('.pager .item.fleft a span').last().text().trim();
         // pages_num = Number(pages_num);
-        pages_num = 10;
+        pages_num = 100;
         console.log('Pages found: ' + pages_num);
 
         Parse_list_pages();
@@ -129,7 +129,7 @@ function Store_products() {
 
             phones.insertMany(products, function (err, result) {
                 if (!err) {
-                    console.log('Products stored to DB: ' + JSON.parse(result).n);
+                    console.log('Products stored to DB');
                 } else return console.log(err);
             })
 
