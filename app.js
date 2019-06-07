@@ -81,7 +81,7 @@ function Parse_products() {
         product_link_opts.url = product_link;
 
         return req_p(product_link_opts).then(function (product_html) {
-            Parse_product_details(product_html);
+            Parse_product_details(product_html, product_link);
         })
     }, {
         concurrency: 5
@@ -94,7 +94,7 @@ function Parse_products() {
 }
 
 
-function Parse_product_details(html) {
+function Parse_product_details(html, product_link) {
     const $ = cheerio.load(html);
     const product_title = $('.offer-titlebox h1').text().trim();
     const product_price = $('.price-label strong').text().trim();
@@ -102,7 +102,8 @@ function Parse_product_details(html) {
 
     let product = {
         name: product_title,
-        price: Int(product_price)
+        price: Int(product_price),
+        url: product_link
     }
 
     product_details_rows.each((ind, detail) => {
